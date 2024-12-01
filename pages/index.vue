@@ -1,4 +1,8 @@
 <script setup>
+const router = useRouter();
+const bookingStore = useBookingStore();
+const { createBooking } = bookingStore;
+
 // 房型資料列表
 const roomsList = ref([
   {
@@ -436,8 +440,6 @@ const handleReservation = (roomInfoData) => {
   resetUserForm();
 };
 
-// 訂單資訊的格式
-const bookingResult = ref({});
 
 // 建立訂單
 const createOrder = (roomInfo, userInfo) => {
@@ -451,9 +453,16 @@ const createOrder = (roomInfo, userInfo) => {
   };
   */
   // 2. 將 bookingResult 改成用 pinia 管理狀態
-
-
   // 3. 使用 router 將頁面導引至 /order
+
+  createBooking({
+    ...roomInfo,
+    user:{
+      ...userInfo
+    }
+  });
+
+  router.push("/order")
 };
 </script>
 

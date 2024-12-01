@@ -1,7 +1,7 @@
 <script setup>
 // 1. 從 useBookingStore 取出資料 bookingResult
-
-const bookingResult = ref({});
+const data = useBookingStore();
+const { bookingResult } = storeToRefs(data);
 </script>
 
 <template>
